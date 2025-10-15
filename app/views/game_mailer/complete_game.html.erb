@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #f3f4f6;
+      color: #1f2937;
+    }
+    .email-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+    }
+    .header {
+      background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+      padding: 40px 30px;
+      text-align: center;
+    }
+    .header-title {
+      font-size: 28px;
+      font-weight: bold;
+      color: #ffffff;
+      margin: 0 0 8px 0;
+      letter-spacing: 0.5px;
+    }
+    .header-subtitle {
+      font-size: 14px;
+      color: #d1d5db;
+      margin: 0;
+    }
+    .header-divider {
+      width: 60px;
+      height: 2px;
+      background-color: #ffffff;
+      margin: 20px auto 0;
+    }
+    .content {
+      padding: 40px 30px;
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: bold;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 0 0 8px 0;
+    }
+    .section-title {
+      font-size: 24px;
+      font-weight: bold;
+      color: #111827;
+      margin: 0 0 6px 0;
+    }
+    .section-description {
+      font-size: 14px;
+      color: #6b7280;
+      margin: 0 0 24px 0;
+      line-height: 1.5;
+    }
+    .divider {
+      width: 40px;
+      height: 2px;
+      background-color: #1f2937;
+      margin: 0 0 30px 0;
+    }
+    .info-box {
+      background-color: #f9fafb;
+      border-left: 3px solid #1f2937;
+      padding: 20px;
+      border-radius: 4px;
+      margin-bottom: 24px;
+    }
+    .info-box-title {
+      font-size: 12px;
+      font-weight: bold;
+      color: #111827;
+      margin: 0 0 12px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .info-grid {
+      display: table;
+      width: 100%;
+    }
+    .info-row {
+      display: table-row;
+    }
+    .info-label {
+      display: table-cell;
+      font-size: 13px;
+      color: #6b7280;
+      padding: 8px 16px 8px 0;
+      width: 40%;
+    }
+    .info-value {
+      display: table-cell;
+      font-size: 13px;
+      font-weight: bold;
+      color: #1f2937;
+      padding: 8px 0;
+    }
+    .category-header {
+      font-size: 13px;
+      font-weight: bold;
+      color: #111827;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin: 30px 0 16px 0;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .table {
+      width: 100%;
+      border: 1px solid #e5e7eb;
+      border-radius: 4px;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+    .table thead {
+      background-color: #f9fafb;
+    }
+    .table th {
+      font-size: 11px;
+      font-weight: bold;
+      color: #374151;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1.5px solid #e5e7eb;
+    }
+    .table td {
+      font-size: 13px;
+      color: #1f2937;
+      padding: 12px;
+      border-bottom: 1px solid #f3f4f6;
+      line-height: 1.4;
+    }
+    .table tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .table-bold {
+      font-weight: bold;
+    }
+    .badge {
+      display: inline-block;
+      background-color: #dbeafe;
+      color: #1e40af;
+      font-size: 10px;
+      font-weight: bold;
+      padding: 4px 8px;
+      border-radius: 3px;
+      margin-top: 4px;
+    }
+    .badge-success {
+      background-color: #d1fae5;
+      color: #065f46;
+    }
+    .summary-card {
+      background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .summary-grid {
+      display: table;
+      width: 100%;
+    }
+    .summary-item {
+      display: table-cell;
+      text-align: center;
+      padding: 12px;
+      border-right: 1px solid #e5e7eb;
+    }
+    .summary-item:last-child {
+      border-right: none;
+    }
+    .summary-value {
+      font-size: 28px;
+      font-weight: bold;
+      color: #1f2937;
+      margin: 0 0 4px 0;
+    }
+    .summary-label {
+      font-size: 11px;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin: 0;
+    }
+    .tips-section {
+      background-color: #fef3c7;
+      border-left: 3px solid #f59e0b;
+      padding: 20px;
+      border-radius: 4px;
+      margin-top: 30px;
+    }
+    .tips-title {
+      font-size: 12px;
+      font-weight: bold;
+      color: #92400e;
+      margin: 0 0 12px 0;
+    }
+    .tip-item {
+      display: flex;
+      margin-bottom: 8px;
+    }
+    .tip-bullet {
+      color: #f59e0b;
+      margin-right: 8px;
+      font-weight: bold;
+    }
+    .tip-text {
+      font-size: 13px;
+      color: #78350f;
+      line-height: 1.5;
+      margin: 0;
+    }
+    .footer {
+      background-color: #f9fafb;
+      padding: 30px;
+      text-align: center;
+      border-top: 1px solid #e5e7eb;
+    }
+    .footer-text {
+      font-size: 12px;
+      color: #6b7280;
+      margin: 0 0 8px 0;
+      line-height: 1.6;
+    }
+    .footer-link {
+      color: #1f2937;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .footer-copyright {
+      font-size: 11px;
+      color: #9ca3af;
+      margin: 16px 0 0 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <!-- Header -->
+    <div class="header">
+      <h1 class="header-title">Game Completed</h1>
+      <p class="header-subtitle">Summary Report Generated</p>
+      <div class="header-divider"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <p class="section-label">Game Summary</p>
+      <h2 class="section-title"><%= @game.name %></h2>
+      <p class="section-description">
+        The game has been marked as complete. Here's a comprehensive summary of the results.
+      </p>
+      <div class="divider"></div>
+
+      <!-- Game Details -->
+      <div class="info-box">
+        <div class="info-box-title">Game Information</div>
+        <div class="info-grid">
+          <div class="info-row">
+            <div class="info-label">Game Name:</div>
+            <div class="info-value"><%= @game.name %></div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Date:</div>
+            <div class="info-value"><%= @game.date.strftime('%B %d, %Y') %></div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Manager:</div>
+            <div class="info-value"><%= @game.manager.name %> <%= @game.manager.last_name %></div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Status:</div>
+            <div class="info-value">
+              <span class="badge badge-success">Completed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary Statistics -->
+      <div class="summary-card">
+        <div class="summary-grid">
+          <div class="summary-item">
+            <p class="summary-value"><%= @game.carts.count %></p>
+            <p class="summary-label">Total Carts</p>
+          </div>
+          <div class="summary-item">
+            <p class="summary-value"><%= @game.carts.sum(:sold) %></p>
+            <p class="summary-label">Items Sold</p>
+          </div>
+          <div class="summary-item">
+            <p class="summary-value">£<%= '%.2f' % @game.carts.sum(:total_value) %></p>
+            <p class="summary-label">Total Revenue</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cart Details -->
+      <h3 class="category-header">Cart Details</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Cart #</th>
+            <th>Worker</th>
+            <th>Hours</th>
+            <th>Items Sold</th>
+            <th>Revenue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @game.carts.each do |cart| %>
+            <% cart.cart_workers.each do |cart_worker| %>
+              <tr>
+                <td class="table-bold"><%= cart.cart_number %></td>
+                <td><%= cart_worker.worker.name %> <%= cart_worker.worker.last_name %></td>
+                <td><%= '%.1f' % cart_worker.hours %>h</td>
+                <td><%= cart.sold %></td>
+                <td class="table-bold">£<%= '%.2f' % cart.total_value %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+
+      <!-- Worker Summary -->
+      <h3 class="category-header">Worker Summary</h3>
+      <div class="info-box">
+        <div class="info-grid">
+          <% 
+            workers_summary = {}
+            @game.carts.each do |cart|
+              cart.cart_workers.each do |cw|
+                worker_name = "#{cw.worker.name} #{cw.worker.last_name}"
+                workers_summary[worker_name] ||= { hours: 0, revenue: 0 }
+                workers_summary[worker_name][:hours] += cw.hours
+                workers_summary[worker_name][:revenue] += cart.total_value
+              end
+            end
+          %>
+          <% workers_summary.each do |worker_name, data| %>
+            <div class="info-row">
+              <div class="info-label"><%= worker_name %>:</div>
+              <div class="info-value"><%= '%.1f' % data[:hours] %>h worked • £<%= '%.2f' % data[:revenue] %> revenue</div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- Tips Section -->
+      <div class="tips-section">
+        <div class="tips-title">💡 Next Steps</div>
+        <div class="tip-item">
+          <span class="tip-bullet">•</span>
+          <p class="tip-text">Review the detailed report in your dashboard for complete analytics.</p>
+        </div>
+        <div class="tip-item">
+          <span class="tip-bullet">•</span>
+          <p class="tip-text">Process worker payments based on hours worked and cart performance.</p>
+        </div>
+        <div class="tip-item">
+          <span class="tip-bullet">•</span>
+          <p class="tip-text">Archive this game data for future reference and reporting.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p class="footer-text">
+        This is an automated notification from your Game Management System.<br>
+        For questions or support, please contact 
+        <a href="mailto:support@yourcompany.com" class="footer-link">support@yourcompany.com</a>
+      </p>
+      <p class="footer-copyright">
+        © <%= Time.now.year %> Your Company Name. All rights reserved.
+      </p>
+    </div>
+  </div>
+</body>
+</html>
