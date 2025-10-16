@@ -20,7 +20,11 @@ production:
   <<: *default
   database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
 
-# Fix for cable database
 cable:
+  <<: *default
+  database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
+
+# SolidQueue / multi-database fix
+queue:
   <<: *default
   database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
