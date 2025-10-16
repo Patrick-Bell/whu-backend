@@ -20,6 +20,7 @@ production:
   <<: *default
   database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
 
-# Add this section to fix the cable database issue
+# Fix for cable database
 cable:
-  <<: *production
+  <<: *default
+  database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
