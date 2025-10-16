@@ -28,3 +28,8 @@ cable:
 queue:
   <<: *default
   database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
+
+  cache:
+  <<: *default
+  database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
+
