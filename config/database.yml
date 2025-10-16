@@ -9,26 +9,43 @@ default: &default
   sslmode: require
 
 development:
-  <<: *default
-  database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
+  primary:
+    <<: *default
+    database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
+  cache:
+    <<: *default
+    database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
+  queue:
+    <<: *default
+    database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
+  cable:
+    <<: *default
+    database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
 
 test:
-  <<: *default
-  database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
+  primary:
+    <<: *default
+    database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
+  cache:
+    <<: *default
+    database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
+  queue:
+    <<: *default
+    database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
+  cable:
+    <<: *default
+    database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
 
 production:
-  <<: *default
-  database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
-
-cable:
-  <<: *default
-  database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
-
-# SolidQueue / multi-database fix
-queue:
-  <<: *default
-  database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
-
-cache:
-  <<: *default
-  database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
+  primary:
+    <<: *default
+    database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
+  cache:
+    <<: *default
+    database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
+  queue:
+    <<: *default
+    database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
+  cable:
+    <<: *default
+    database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
