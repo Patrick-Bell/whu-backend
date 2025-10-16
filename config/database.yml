@@ -29,7 +29,6 @@ queue:
   <<: *default
   database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
 
-  cache:
+cache:
   <<: *default
   database: <%= ENV['SUPABASE_DATABASE'] || 'postgres' %>
-
