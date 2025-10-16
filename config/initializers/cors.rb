@@ -1,22 +1,11 @@
-
- Rails.application.config.middleware.insert_before 0, Rack::Cors do
-
+Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "https://whu-performance-tracker.netlify.app"
-    
-    resource "*",
+    origins 'https://whu-performance-tracker.netlify.app', 'http://localhost:5173'
+
+    resource '*',
       headers: :any,
+      expose: ['Authorization'],
       methods: [:get, :post, :put, :patch, :delete, :options, :head],
       credentials: true
   end
-
-
-   allow do
-     origins "http://localhost:5173"
-
-     resource "*",
-       headers: :any,
-       methods: [:get, :post, :put, :patch, :delete, :options, :head],
-       credentials: true
-   end
 end

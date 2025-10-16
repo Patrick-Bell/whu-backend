@@ -3,7 +3,6 @@ class SessionsController < ApplicationController
     include ActionController::Cookies
   
 
-    ENVIRONMENT = ENV['ENVIRONMENT']
     SESSION_KEY = ENV['SESSION_KEY']
 
     def create
@@ -27,9 +26,9 @@ class SessionsController < ApplicationController
         cookies.signed[:token] = {
           value: token,
           httponly: true,         # ok
-          same_site: ENVIRONMENT == 'development' ? :lax : :none,     # :lax for same-site, :none for cross-site
+          same_site: Rails.env.development? ? :lax : :none,
+          secure: Rails.env.production? ? true : false
           expires: 2.hours.from_now,
-          secure: ENVIRONMENT == 'development' ? false : true ,           # must be false for HTTP (dev)
           path: '/'
         }
     
@@ -55,8 +54,8 @@ class SessionsController < ApplicationController
         signed: true,
         httponly: true,
         path: "/",
-        same_site: ENVIRONMENT == 'development' ? :lax : :none,     # :lax for same-site, :none for cross-site
-        secure: ENVIRONMENT == 'development' ? false : true ,           # must be false for HTTP (dev)
+        same_site: Rails.env.development? ? :lax : :none,
+        secure: Rails.env.production? ? true : false
         )
       render json: { message: 'Logged out successfully' }, status: :ok
     end
