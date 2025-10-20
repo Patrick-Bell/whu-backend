@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_14_125418) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_17_124215) do
   create_schema "auth"
   create_schema "extensions"
   create_schema "graphql"
@@ -137,7 +137,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_14_125418) do
     t.boolean "show", default: true
     t.boolean "game_notifications", default: false
     t.boolean "weekly_notifications", default: false
+    t.string "reset_password_code"
+    t.datetime "reset_password_sent_at"
     t.index ["email"], name: "index_managers_on_email", unique: true
+    t.index ["reset_password_code"], name: "index_managers_on_reset_password_code", unique: true
   end
 
   create_table "messages", force: :cascade do |t|

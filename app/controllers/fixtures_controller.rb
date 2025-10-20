@@ -1,7 +1,5 @@
 class FixturesController < ApplicationController
     before_action :set_fixture, only: %i[ show update destroy ]
-
-    before_action :authenticate_user
   
     # GET /fixtures
     def index
@@ -97,6 +95,29 @@ class FixturesController < ApplicationController
 
       render json: @last_3, status: :ok
     end
+
+
+    def add_calendar_event
+      fixture = Fixture.find(params[:id])
+    
+      cal = Icalendar::Calendar.new
+      cal_event = Icalendar::Event.new
+    
+      cal_event.dtstart     = fixture.date
+      cal_event.dtend       = fixture.date + 3.hours # adjust duration as needed
+      cal_event.summary     = fixture.name
+      cal_event.description = "#{fixture.competition} match between #{fixture.home_team} and #{fixture.away_team} at #{fixture.stadium}."
+      cal_event.location    = fixture.stadium if fixture.respond_to?(:stadium)
+    
+      cal.add_event(cal_event)
+      cal.publish
+    
+      send_data cal.to_ical,
+                type: 'text/calendar; charset=utf-8',
+                disposition: 'attachment',
+                filename: "fixture_#{fixture.id}.ics"
+    end
+    
     
     
     
